@@ -1,0 +1,8 @@
+<?php
+require_once 'funciones.php';
+require_once 'conexion.php';
+require_login();
+$error=get_flash('error_password'); $ok=get_flash('ok_password');
+?>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cambiar contraseña — Verde es Vida</title><link rel="stylesheet" href="estilos_login.css"></head>
+<body><div class="login-container"><section class="login-visual"><div class="logo"><img src="img/logo.png" alt="Verde es Vida"></div><h1>Verde es Vida</h1><p>Seguridad de tu cuenta</p></section><section class="login-form"><span class="bienvenida">CUENTA</span><h2>Cambiar contraseña</h2><?php if($error): ?><div class="mensaje-error"><?=e($error)?></div><?php endif; ?><?php if($ok): ?><div class="mensaje-exito"><?=e($ok)?></div><?php endif; ?><form method="post" action="guardar_contrasena.php"><input type="hidden" name="csrf" value="<?=e(csrf_token())?>"><div class="campo"><label>Contraseña actual</label><div class="input-box"><input type="password" name="actual" required autocomplete="current-password"></div></div><div class="campo"><label>Nueva contraseña</label><div class="input-box"><input type="password" name="nueva" required minlength="8" maxlength="72" autocomplete="new-password"></div></div><div class="campo"><label>Confirmar nueva contraseña</label><div class="input-box"><input type="password" name="confirmar" required minlength="8" maxlength="72" autocomplete="new-password"></div></div><button class="btn-login" type="submit">Actualizar contraseña</button></form><p class="registro"><a href="index.php">Volver al inicio</a></p></section></div></body></html>
